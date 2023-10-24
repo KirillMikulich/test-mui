@@ -1,3 +1,4 @@
+import { red } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 //#FFE4E2 -red
 export const theme = createTheme ({
@@ -23,7 +24,7 @@ export const theme = createTheme ({
           maxWidth: '400px',
           '& .MuiFormLabel-root, .MuiFormLabel-root.Mui-focused, .MuiFormLabel-root.Mui-error': {
             color: '#5E666F',
-            paddingLeft: '8px',
+            paddingLeft: '12px',
             paddingRight: '8px',
             top: '-10%',
           },
@@ -42,6 +43,13 @@ export const theme = createTheme ({
           '& .MuiFormControl-root > .Mui-error' : {
             backgroundColor: 'red'
           },
+          '& .MuiSelect-icon': {
+            top: '50%',
+            transform: 'translateY(-70%)',
+          },
+          '& .MuiSelect-iconOpen': {
+            transform: 'translateY(-70%) rotateX(180deg)'
+          }
         },
       }
     },
@@ -51,6 +59,19 @@ export const theme = createTheme ({
                 color: '#121518',
             },
         }
+    },
+
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+          borderRadius: '10px',
+        },
+        select: {
+          backgroundColor: 'transparent',
+          padding: '4px 32px 8px 0px'
+        }
+      }
     }
 
 

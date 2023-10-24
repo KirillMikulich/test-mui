@@ -1,20 +1,24 @@
 import React from 'react';
-import { FormControl, TextField } from "@mui/material";
+import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import InputAdornment from '@mui/material/InputAdornment';
 import { NumericFormatCustom, TextMaskCustom } from './CustomInput';
 import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 function App() {
+  const [age, setAge] = React.useState('Placeholder');
 
+  const handleChange = (event: any) => {
+    setAge(event.target.value as string);
+  };
   const [values, setValues] = React.useState({
     textmask: '(100) 000-0000',
     numberformat: '1320',
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,
@@ -23,7 +27,7 @@ function App() {
   return (
     <div
       style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'white' }}>
-      <TextField
+      {/* <TextField
         id="filled-error-helper-text"
         label="Field label"
         defaultValue=""
@@ -102,12 +106,12 @@ function App() {
         defaultValue=""
         variant="standard"
         helperText={'test tes'}
-      />
+      />*/}
       <br />
+
       <TextField
         label="Imask"
-        value={values.numberformat}
-        onChange={handleChange}
+        value={''}
         name="numberformat"
         id="formatted-numberformat-input"
         InputProps={{
@@ -115,7 +119,66 @@ function App() {
           disableUnderline: true,
         }}
         variant="standard"
-      />
+      /> 
+      <TextField
+        label="Imask"
+        value={values.numberformat}
+        onChange={handleChange2}
+        name="numberformat"
+        id="formatted-numberformat-input"
+        InputProps={{
+          inputComponent: TextMaskCustom as any,
+          disableUnderline: true,
+        }}
+        variant="standard"
+      /> 
+  
+  <TextField
+        variant="standard"
+        select
+        sx={{
+          marginTop: '20px'
+        }}
+        value={age === '' ? 'Placeholder' : age}
+        label='Age'
+        SelectProps={{
+          IconComponent: ExpandMoreIcon
+        }}
+        onChange={handleChange}
+      >
+      <MenuItem value="Placeholder">
+        Placeholder
+      </MenuItem>
+        
+      <MenuItem value={'10'}>Ten</MenuItem>
+      <MenuItem value={'20'}>Twenty</MenuItem>
+      <MenuItem value={'30'}>Thirty</MenuItem>
+    </TextField>
+
+    <TextField
+        variant="standard"
+        error
+        select
+        sx={{
+          marginTop: '20px'
+        }}
+        SelectProps={{
+          IconComponent: ExpandMoreIcon
+        }}
+        value={age === '' ? 'Placeholder' : age}
+        label='Age'
+        onChange={handleChange}
+      >
+      <MenuItem value="Placeholder">
+        Placeholder
+      </MenuItem>
+        
+      <MenuItem value={'10'}>Ten</MenuItem>
+      <MenuItem value={'20'}>Twenty</MenuItem>
+      <MenuItem value={'30'}>Thirty</MenuItem>
+    </TextField>
+
+
     </div>
   );
 }

@@ -49,7 +49,11 @@ export const theme = createTheme ({
           },
           '& .MuiSelect-iconOpen': {
             transform: 'translateY(-70%) rotateX(180deg)'
-          }
+          },
+          '& .MuiAutocomplete-endAdornment': {
+            top: '50%',
+            transform: 'translateY(-70%)',
+          },
         },
       }
     },

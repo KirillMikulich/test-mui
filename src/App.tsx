@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { Autocomplete, FormControl, MenuItem, Select, TextField } from "@mui/material";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import InputAdornment from '@mui/material/InputAdornment';
 import { NumericFormatCustom, TextMaskCustom } from './CustomInput';
@@ -7,6 +7,12 @@ import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+const options = [
+  { value: 'option1', label: 'Option 1' },
+  { value: 'option2', label: 'Option 2' },
+  { value: 'option3', label: 'Option 3' },
+];
 function App() {
   const [age, setAge] = React.useState('Placeholder');
 
@@ -23,6 +29,12 @@ function App() {
       ...values,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const [selectedValue, setSelectedValue] = React.useState(null);
+
+  const handleChange3 = (event: any, value: any) => {
+    setSelectedValue(value);
   };
   return (
     <div
@@ -164,7 +176,8 @@ function App() {
         }}
         SelectProps={{
           IconComponent: ExpandMoreIcon
-        }}
+        }} 
+        
         value={age === '' ? 'Placeholder' : age}
         label='Age'
         onChange={handleChange}
@@ -179,6 +192,27 @@ function App() {
     </TextField>
 
 
+<FormControl>
+        <Autocomplete
+          value={selectedValue}
+          onChange={handleChange3}
+          options={options}
+          disablePortal
+          popupIcon={<ExpandMoreIcon/>}
+          renderInput={(params) => 
+          <TextField {...params}
+          variant="standard"
+          error
+          sx={{
+            marginTop: '20px'
+          }}
+          label='Age'
+          InputProps={{
+            ...params.InputProps,
+            disableUnderline: true,
+          }} />}
+/>
+      </FormControl>
     </div>
   );
 }
